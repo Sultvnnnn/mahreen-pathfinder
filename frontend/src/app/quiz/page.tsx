@@ -8,6 +8,7 @@ import ResultCard from "@/components/ResultCard";
 import { getSupabase, isSupabaseConfigured } from "@/lib/supabase/client";
 import {
   Recommendation,
+  RecommendedProgram,
   QuizSubmitRequest,
   QuizSubmitResponse,
   submitQuizAnswers,
@@ -18,6 +19,7 @@ export default function QuizPage() {
   const [checkingAuth, setCheckingAuth] = useState(true);
   const [authToken, setAuthToken] = useState<string | null>(null);
   const [userEmail, setUserEmail] = useState<string | null>(null);
+  const [userName, setUserName] = useState<string>("");
   const [submitting, setSubmitting] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [result, setResult] = useState<QuizSubmitResponse | null>(null);
@@ -60,6 +62,7 @@ export default function QuizPage() {
 
     setSubmitting(true);
     setErrorMessage(null);
+    setUserName(payload.name || userEmail?.split("@")[0] || "Kreator Muda");
 
     try {
       const response = await submitQuizAnswers(payload, authToken);
@@ -104,8 +107,8 @@ export default function QuizPage() {
 
         {/* List of Result Cards */}
         <div className="flex flex-col gap-6">
-          {result.recommendations.map((prog: Recommendation) => (
-            <ResultCard key={prog.id} program={prog} />
+          {result.recommendations.map((prog: RecommendedProgram) => (
+            <ResultCard key={prog.id} program={prog} userName={userName} />
           ))}
         </div>
 

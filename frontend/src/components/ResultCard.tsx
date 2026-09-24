@@ -5,9 +5,11 @@ import Link from "next/link";
 import { motion, useReducedMotion, animate } from "framer-motion";
 import { RecommendedProgram } from "@/lib/api";
 import { scaleIn, EASE_BEZIER } from "@/lib/motion";
+import ShareCardButton from "@/components/ShareCardButton";
 
 interface ResultCardProps {
   program: RecommendedProgram;
+  userName?: string;
 }
 
 export function getProgramUrl(ctaLink: string): string {
@@ -19,7 +21,7 @@ export function getProgramUrl(ctaLink: string): string {
   return ctaLink;
 }
 
-export default function ResultCard({ program }: ResultCardProps) {
+export default function ResultCard({ program, userName }: ResultCardProps) {
   const shouldReduceMotion = useReducedMotion();
   const [displayScore, setDisplayScore] = useState(shouldReduceMotion ? program.score : 0);
   const targetUrl = getProgramUrl(program.cta_link);
@@ -81,25 +83,28 @@ export default function ResultCard({ program }: ResultCardProps) {
         )}
       </div>
 
-      {/* CTA Inline Link Portal Blue */}
-      <div className="pt-2">
-        {isInternal ? (
-          <Link
-            href={targetUrl}
-            className="inline-block text-[16px] font-jetbrains-mono text-portal-blue hover:underline cursor-pointer"
-          >
-            {program.cta_text || "ikut program →"}
-          </Link>
-        ) : (
-          <a
-            href={targetUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-block text-[16px] font-jetbrains-mono text-portal-blue hover:underline"
-          >
-            {program.cta_text || "ikut program →"}
-          </a>
-        )}
+      {/* Action Row: CTA Link + Share Card Button */}
+      <div className="pt-2 flex flex-wrap items-center justify-between gap-4 border-t border-fog/5">
+        <div>
+          {isInternal ? (
+            <Link
+              href={targetUrl}
+              className="inline-block text-[16px] font-jetbrains-mono text-portal-blue hover:underline cursor-pointer"
+            >
+              {program.cta_text || "ikut program →"}
+            </Link>
+          ) : (
+            <a
+              href={targetUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block text-[16px] font-jetbrains-mono text-portal-blue hover:underline"
+            >
+              {program.cta_text || "ikut program →"}
+            </a>
+          )}
+        </div>
+        <ShareCardButton program={program} userName={userName} />
       </div>
     </motion.article>
   );

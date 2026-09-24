@@ -2,6 +2,7 @@ import HeroASCII from "@/components/HeroASCII";
 import SectionHeading from "@/components/SectionHeading";
 import InlineBodyLink from "@/components/InlineBodyLink";
 import ProgramCard from "@/components/ProgramCard";
+import TerminalFeed from "@/components/TerminalFeed";
 import type { Program } from "@/lib/api";
 
 const STATIC_PROGRAMS: Program[] = [
@@ -90,6 +91,12 @@ export default async function Home() {
 
       {/* Main Content Sections Container (Page max-width 800px, section gap 64px per DESIGN_SYSTEM.md) */}
       <div className="w-full max-w-[800px] mx-auto px-4 flex flex-col gap-16 py-16">
+        {/* Pulse Generasi Section */}
+        <section id="pulse" className="flex flex-col gap-6 scroll-mt-20">
+          <SectionHeading icon="⚙" label="pulse generasi" />
+          <TerminalFeed />
+        </section>
+
         {/* Section 1: Tentang (Prose langsung di Cosmic Void) */}
         <section id="tentang" className="flex flex-col gap-6 scroll-mt-20">
           <SectionHeading icon="ℹ" label="tentang" />

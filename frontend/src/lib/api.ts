@@ -41,11 +41,27 @@ export interface QuizSubmitResponse {
   recommendations: RecommendedProgram[];
 }
 
+export interface InterestDistributionItem {
+  interest: string;
+  count: number;
+}
+
 export interface StatsResponse {
   total_submissions: number;
+  top_program?: string | null;
+  interest_distribution: InterestDistributionItem[];
   top_interest?: string | null;
   most_recommended_program?: string | null;
-  popular_interests: { minat: string; count: number }[];
+  popular_interests?: { minat: string; count: number }[];
+}
+
+export interface ActivityItem {
+  id: string;
+  kind: string;
+  label: string;
+  interest: string;
+  program_title: string;
+  created_at: string;
 }
 
 /**
