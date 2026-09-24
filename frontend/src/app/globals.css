@@ -1,0 +1,96 @@
+@import "tailwindcss";
+
+@theme {
+  --color-cosmic-void: #06051d;
+  --color-abyssal-blue: #0f1c36;
+  --color-steel-navy: #1d293d;
+  --color-deep-slate: #314062;
+  --color-mist: #cad5e2;
+  --color-fog: #e5e7eb;
+  --color-ash: #2e3038;
+  --color-ghost-white: #ffffff;
+  --color-ice-blue: #ebf8ff;
+  --color-portal-blue: #63b3ed;
+  --color-bioluminescent-green: #004f3b;
+  --color-terminal-amber: #733e0a;
+  --color-crimson-depth: #8b0836;
+  --color-specimen-green: #00bc7d;
+  --color-warning-amber: #f0b100;
+  --color-fault-red: #ff2056;
+
+  --font-jetbrains-mono: var(--font-jetbrains-mono), "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  --font-dm-sans: var(--font-dm-sans), "DM Sans", ui-sans-serif, system-ui, sans-serif;
+
+  --text-caption: 14px;
+  --text-body: 16px;
+  --text-heading: 30px;
+
+  --radius-lg: 8px;
+  --radius-full: 9999px;
+}
+
+:root {
+  color-scheme: dark;
+}
+
+html,
+body {
+  min-height: 100%;
+  background-color: var(--color-cosmic-void, #06051d);
+  background-image: linear-gradient(0deg, rgb(6, 5, 29) 30%, rgb(6, 20, 52) 100%);
+  background-attachment: fixed;
+  color: var(--color-mist, #cad5e2);
+  font-family: var(--font-jetbrains-mono, monospace);
+  font-weight: 400;
+}
+
+/* Accessibility: Visible Focus States per DESIGN_SYSTEM.md (Portal Blue 2px, offset 2px) */
+:focus-visible {
+  outline: 2px solid var(--color-portal-blue, #63b3ed) !important;
+  outline-offset: 2px !important;
+}
+
+/* Pill buttons specific shadow per DESIGN_SYSTEM.md */
+.pill-shadow {
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.1) 0px 2px 4px -2px;
+}
+
+/* Standardized Triad Pill classes */
+.pill-green {
+  background-color: rgba(0, 79, 59, 0.2);
+  color: var(--color-specimen-green, #00bc7d);
+  border: 1px solid rgba(0, 188, 125, 0.3);
+  border-radius: 9999px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.1) 0px 2px 4px -2px;
+  transition: all 0.2s ease;
+}
+.pill-green:hover {
+  background-color: rgba(0, 79, 59, 0.35);
+  border-color: rgba(0, 188, 125, 0.55);
+}
+
+.pill-amber {
+  background-color: rgba(115, 62, 10, 0.2);
+  color: var(--color-warning-amber, #f0b100);
+  border: 1px solid rgba(240, 177, 0, 0.3);
+  border-radius: 9999px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.1) 0px 2px 4px -2px;
+  transition: all 0.2s ease;
+}
+.pill-amber:hover {
+  background-color: rgba(115, 62, 10, 0.35);
+  border-color: rgba(240, 177, 0, 0.55);
+}
+
+.pill-red {
+  background-color: rgba(139, 8, 54, 0.2);
+  color: var(--color-fault-red, #ff2056);
+  border: 1px solid rgba(255, 32, 86, 0.3);
+  border-radius: 9999px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.1) 0px 2px 4px -2px;
+  transition: all 0.2s ease;
+}
+.pill-red:hover {
+  background-color: rgba(139, 8, 54, 0.35);
+  border-color: rgba(255, 32, 86, 0.55);
+}

@@ -1,0 +1,49 @@
+# Environment variables and secrets (CRITICAL: NEVER COMMIT)
+.env
+.env*
+*.env
+*.pem
+*.key
+
+# Python
+.venv/
+venv/
+ENV/
+env/
+__pycache__/
+*.py[cod]
+*$py.class
+*.pytest_cache/
+.coverage
+htmlcov/
+
+# Node.js / Bun / Next.js
+node_modules/
+frontend/node_modules/
+.next/
+frontend/.next/
+out/
+build/
+.pnp
+.pnp.js
+dist/
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# OS / Editor
+.DS_Store
+Thumbs.db
+.idea/
+*.swp
+*.swo
+.vscode/
+
+# Vercel / Turbopack
+.vercel/
+*.tsbuildinfo
+next-env.d.ts
