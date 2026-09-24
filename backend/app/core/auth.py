@@ -8,13 +8,18 @@ from jwt import PyJWKClient
 
 load_dotenv()
 
-SUPABASE_JWKS_URL = os.getenv("SUPABASE_JWKS_URL")
-if not SUPABASE_JWKS_URL:
-    raise RuntimeError("SUPABASE_JWKS_URL is missing in environment variables")
-
 bearer_scheme = HTTPBearer(auto_error=False)
+_jwk_client: PyJWKClient | None = None
 
-jwk_client = PyJWKClient(SUPABASE_JWKS_URL)
+
+def get_jwk_client() -> PyJWKClient:
+    global _jwk_client
+    if _jwk_client is None:
+        supabase_jwks_url = os.getenv("SUPABASE_JWKS_URL")
+        if not supabase_jwks_url:
+            raise RuntimeError("SUPABASE_JWKS_URL is missing in environment variables")
+        _jwk_client = PyJWKClient(supabase_jwks_url)
+    return _jwk_client
 
 
 def get_current_user(
@@ -29,7 +34,7 @@ def get_current_user(
     token = credentials.credentials
 
     try:
-        signing_key = jwk_client.get_signing_key_from_jwt(token)
+        signing_key = get_jwk_client().get_signing_key_from_jwt(token)
 
         payload = jwt.decode(
             token,

@@ -28,6 +28,9 @@ for url in frontend_env.split(","):
                 for port in ("3000", "3001", "3002"):
                     origins_set.add(f"http://{host}:{port}")
 
+# Always allow official Vercel deployment URL
+origins_set.add("https://mahreen-pathfinder.vercel.app")
+
 origins = sorted(list(origins_set))
 
 app.add_middleware(
